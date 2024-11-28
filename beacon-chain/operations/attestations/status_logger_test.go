@@ -90,7 +90,6 @@ func TestReset(t *testing.T) {
 }
 
 func TestLogOnCloseToNextEpoch(t *testing.T) {
-
 	st := &StatusLogger{
 		mu:          &sync.Mutex{},
 		genesisTime: uint64(prysmTime.Now().Unix()),
