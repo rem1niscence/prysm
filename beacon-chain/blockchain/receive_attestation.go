@@ -211,7 +211,9 @@ func (s *Service) processAttestations(ctx context.Context, disparity time.Durati
 				}
 			}
 			log.WithFields(fields).WithError(err).Warn("Could not process attestation for fork choice")
+			s.cfg.AttLogger.AddFailedAttestation(err.Error())
 		}
+		s.cfg.AttLogger.IncVerifiedAttestations()
 	}
 }
 

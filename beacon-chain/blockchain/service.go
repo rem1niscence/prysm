@@ -87,6 +87,7 @@ type config struct {
 	StateNotifier           statefeed.Notifier
 	ForkChoiceStore         f.ForkChoicer
 	AttService              *attestations.Service
+	AttLogger               *attestations.StatusLogger
 	StateGen                *stategen.State
 	SlasherAttestationsFeed *event.Feed
 	WeakSubjectivityCheckpt *ethpb.Checkpoint
@@ -501,6 +502,10 @@ func (s *Service) initializeBeaconChain(
 	}
 
 	s.cfg.AttService.SetGenesisTime(genesisState.GenesisTime())
+
+	// Start attestations status logger service
+	s.cfg.AttLogger = attestations.NewStatusLogger(genesisState.GenesisTime())
+	s.cfg.AttLogger.LogStatus(ctx)
 
 	return genesisState, nil
 }
