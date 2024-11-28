@@ -109,13 +109,6 @@ func (a *StatusLogger) isNextSlotNewEpoch() bool {
 	currentSlotEpoch := slots.ToEpoch(currentSlot)
 	nextSlotEpoch := slots.ToEpoch(nextSlot)
 
-	fmt.Println()
-	fmt.Println("CURRENT SLOT", currentSlot)
-	fmt.Println("NEXT SLOT", nextSlot)
-	fmt.Println("CURRENT EPOCH", currentSlotEpoch)
-	fmt.Println("NEXT SLOT EPOCH", nextSlotEpoch)
-	fmt.Println("RESULT", nextSlotEpoch > currentSlotEpoch)
-
 	return nextSlotEpoch > currentSlotEpoch
 }
 
